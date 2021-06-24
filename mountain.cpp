@@ -2,21 +2,23 @@
 using namespace std;
 #include <vector>
 
-int mountian(vector<int> a)
+int mountian(vector<int> arr)
 {
-   int n = a.size();
-   int result, temp = 1;
+   int n = arr.size();
+   if(n<=2) return 0;
+   int result=1;
+   int temp = 0;
    int d = 0;
    for (int i = 0; i < n; i++)
    {
-      if (d == 0 && a[i + 1] > a[i])
+      if (d == 0 && arr[i + 1] > arr[i])
          temp++;
-      else if (d == 0 && i > 0 && a[i] > a[i - 1] && a[i + 1] < a[i])
+      else if (d == 0 && i > 0 && arr[i] > arr[i - 1] && arr[i + 1] < arr[i])
       {
          temp++;
          d = 1;
       }
-      else if (d == 1 && a[i + 1] > a[i])
+      else if (i==n-1 || (d == 1 && arr[i + 1] > arr[i]))
       {  temp++;
          if (result < temp)
          {
@@ -28,6 +30,7 @@ int mountian(vector<int> a)
       else if (d > 0)
          temp++;
    }
+   // if(temp>result) result=temp;
    if (result >= 3)
       return result;
    return 0;
@@ -35,7 +38,7 @@ int mountian(vector<int> a)
 
 int main()
 {
-   vector<int> a{5, 6, 1, 2, 3, 4, 5, 4, 3, 2, 0, 1, 2, 3, -2, 4};
+   vector<int> a{0,1,0,1};
 
    int result = mountian(a);
    cout << result;
