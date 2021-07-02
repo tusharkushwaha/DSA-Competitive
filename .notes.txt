@@ -5,3 +5,12 @@ Difference between SubArray, SubSequence and SubSet? https://www.youtube.com/wat
 no of digits in an integer : The formula will be integer of (log10(number) + 1).  log10() and log() in #include <cmath>.
 
 
+char 2 to int 2: '2'- '0' = 2.
+eg-  s2 = "kushwaha";
+    string temp= "123";
+    cout<<(s2[temp[0]-'0']);
+
+    output: u
+
+
+ 

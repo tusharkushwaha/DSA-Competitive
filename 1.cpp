@@ -4,10 +4,8 @@ using namespace std;
 
 int main()
 {
-    string s= ""; string s2 = "kushwaha";
-    string substr = s.substr(1,s.length());
-    cout<<(substr);
-
-    
-    
+    string s2 = "kushwaha";
+    string temp= "123";
+    string te2= s2.substr(s2.length());
+    cout<<s2.back();
 }
