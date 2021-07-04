@@ -1,23 +1,23 @@
-#include <iostream>
-#include <vector>
+#include<bits/stdc++.h>
 using namespace std;
-
-string codes[] = {".;", "abc", "def", "ghi", "jkl", "mno", "pqrs", "tu", "vwx", "yz"};
-
-void printKPC(string ques, string ans){
-
-   if(ques.length()==0){
-      cout<<ans<<endl;
-      return;
-   }
-   string temp = codes[ques[0]-'0'];   
-   for(int i=0; i<temp.length();i++){
-      printKPC(ques.substr(1), ans+ temp[i]);
-   }
-    
+   
+// The vect is passed by reference and changes
+// made here reflect in main()
+void func(vector<int> &vect)
+{
+   vect.push_back(30);
 }
-
-int main(){
-    string str = "74";
-    printKPC(str, "");
+   
+int main()
+{
+    vector<int> vect;
+    vect.push_back(10);
+    vect.push_back(20);
+   
+    func(vect);
+  
+    for (int i=0; i<vect.size(); i++)
+       cout << vect[i] << " ";
+   
+    return 0;
 }

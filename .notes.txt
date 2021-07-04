@@ -13,4 +13,15 @@ eg-  s2 = "kushwaha";
     output: u
 
 
+using & in the function defition is the simplest way to send a variable/any container by its reference . eg:
+void func(vector<int> &vect){
+    vect is passed by reference.
+}   
+int main()
+{ 
+    func(vect);   
+    return 0;
+}
+
+
  
