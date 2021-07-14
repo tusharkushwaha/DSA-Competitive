@@ -33,6 +33,24 @@ int tabcoin(int arr[], int amt, int n){
    return q[amt];
    
 }
+int pertabcoin(int arr[], int amt, int n){
+   int q[amt+1];
+   for(int i=0; i<=amt; i++)
+      q[i]=0;
+   q[0]=1;
+   int temp =0;
+   while(temp ==0){
+      temp = 1;
+      for(int i=0;i<n;i++){
+      for(int j=1; j<=amt; j++){
+         if(j-arr[i]>=0 && 0 != q[j-arr[i]])
+         q[j]+=q[j-arr[i]]; 
+         temp = 0;
+      }
+   }
+   }
+   return q[amt];
+}
 int main()
 {
    int n;

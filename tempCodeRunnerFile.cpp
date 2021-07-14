@@ -1,1 +1,3 @@
-int coinChg(int arr[], int amt, int n){
+if(optr.empty() != true and s[i] == ')' and optr.top() == '('){
+                    optr.pop(); break;
+                } 

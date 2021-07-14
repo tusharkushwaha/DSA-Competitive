@@ -1,4 +1,4 @@
-int temp = atoi("1"); //atoi is a function that converts a C string representing an integer number in decimal representation to an int.
+int temp = stoi("1"); //atoi is a function that converts a C string representing an integer number in decimal representation to an int.
 
 Difference between SubArray, SubSequence and SubSet? https://www.youtube.com/watch?v=qoI26oy8MeI&t=415s&ab_channel=CodingandSystemDesignInterviews
 
@@ -24,4 +24,28 @@ int main()
 }
 
 
- 
+ Pass by Value | Pass by Reference | Pass by Address in C++ Programming
+https://www.youtube.com/watch?v=-NS3KfrSvU8&t=2s&ab_channel=SimpleSnippets
+
+
+
+
+int main(){
+    int p=10;
+    int *x= &p;
+    int **y = &x;
+    cout<< x<<endl<<*x<<endl;
+    cout<<y<<endl<<*y<<endl<<**y;
+    return 0;
+}
+output-
+0x7ffd1b5a0824
+10
+0x7ffd1b5a0828
+0x7ffd1b5a0824
+10
+
+
+
+isdigit() --> takes char as an argument and returns 1 if it numeric otherwise 0.
+isalpha() --> takes char as an argument and returns 1 if it alphabatical otherwise 0.
