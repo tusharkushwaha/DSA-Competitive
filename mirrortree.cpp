@@ -1,3 +1,4 @@
+// Mirror A Generic Tree
 #include <bits/stdc++.h>
 using namespace std;
 #define debug(a) cout<<#a<<' ';_print(a); cout<<endl;
@@ -11,31 +12,26 @@ class node{
 };
 
 void display(node *root){ 
-  stack <node*> s1, s2; 
-    s1.push(root); cout<<root->data<<endl;
-    while(s1.empty() != true or s2.empty()!=true ){
-        if(s1.empty() != true){
-            while(s1.empty() != true){
-                int n = s1.top()->children.size();
-                for(int i = n-1; i>=0; i--) {
-                    cout<<s1.top()->children[i]->data<<" ";
-                    s2.push(s1.top()->children[i]);
-                }
-                s1.pop();
-            }    
-        }else{
-            while(s2.empty()!= true){
-                for(auto &i: s2.top()->children){
-                    cout<<i->data<<" ";
-                    s1.push(i);
-                }
-                s2.pop();
-            }
-        }
-        cout<<endl;
-    }
+  int n = root->children.size();
+  cout<<root->data<<" -> ";
+  for(int i=0; i<n; i++)cout<<root->children[i]->data<<", ";
+  cout<<"."<<endl;
+  for(int i=0 ; i<n; i++) display(root->children[i]);
 }
 
+void displayreverse(node *root){ 
+  int n = root->children.size();
+  cout<<root->data<<" -> ";
+  for(int i=n-1; i>= 0; i--)cout<<root->children[i]->data<<", ";
+  cout<<" ."<<endl;
+  for(int i=n-1 ; i>= 0; i--) displayreverse(root->children[i]);
+}
+void displayrev2(node *root){
+    reverse(root->children.begin(),root->children.end());
+    for(auto &i: root->children){
+        displayrev2(i);
+    }
+}
 int main(){
 	int n;
 	cin>>n;
@@ -53,8 +49,9 @@ int main(){
       }
       
  }
-  //debug(display(root))
   display(root);
-  
+//   displayreverse(root);
+  displayrev2(root);
+    display(root);
   return 0;
 }
