@@ -10,11 +10,11 @@ class node{
     int data; vector<node*>children;
 };
 
-void display(node *root){ 
+void display(node *root){
   stack <node*> s1, s2; 
     s1.push(root); cout<<root->data<<endl;
     while(s1.empty() != true or s2.empty()!=true ){
-        if(s1.empty() != true){
+        if(s1.empty() != true){B
             while(s1.empty() != true){
                 int n = s1.top()->children.size();
                 for(int i = n-1; i>=0; i--) {
