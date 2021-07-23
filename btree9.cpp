@@ -1,4 +1,5 @@
 #include <bits/stdc++.h>
+#include <bits/stdc++.h>
 using namespace std;
 #define debug(a) cout<<#a<<' ';_print(a); cout<<endl;
 template <class T> void _print(T a) {cout<<a;}
@@ -12,9 +13,29 @@ class node{
 };
 class pr{
   public: node* addr; int state;
-    pr(node* add):state(1),addr(add){}
-    
+    pr(node* add):state(1),addr(add){}    
 };
+void clonel(node *root){
+  if(root == nullptr) return;
+  node *temp = new node(root->data);
+  temp->left = root->left;
+  clonel(root->left); clonel(root->right);
+  root->left = temp;  
+}
+void displaytree(node* root){
+  if(root == nullptr) return;
+  if(root->left != nullptr and root->right != nullptr) cout<<root->data<<"-->"<<root->left->data<<", "<<root->right->data<<"\n";
+  else if(root->left != nullptr) cout<<root->data<<"-->"<<root->left->data<<"\n";
+  else if(root->right != nullptr) cout<<root->data<<"-->"<<root->right->data<<"\n";
+  else cout<<root->data<<"\n";
+  displaytree(root->left);
+  displaytree(root->right);
+
+}
+void task(node* root){
+  clonel(root);
+  displaytree(root);
+}
 void maketree( vector<int>arr, int n){
   stack<pr*>st; node* root = new node(arr[0]); pr *rootp = new pr(root);
    st.push(rootp); int i=1;
@@ -39,8 +60,8 @@ void maketree( vector<int>arr, int n){
         
     }
     i++;
-  }     
-    
+  }
+  task(root);
 }
 int main(){
   int n;

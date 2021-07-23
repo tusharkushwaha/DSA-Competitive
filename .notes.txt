@@ -49,3 +49,22 @@ output-
 
 isdigit() --> takes char as an argument and returns 1 if it numeric otherwise 0.
 isalpha() --> takes char as an argument and returns 1 if it alphabatical otherwise 0.
+
+
+
+
+splits a sttring using delimiter(in this case ,) into string token. now do whatever you want to do with a strng token.
+string temp = "tushar,kushwaha"; 
+string token;
+  stringstream ss(temp);
+  while(getline(ss,token,',')){
+    cout<<token<<"\n";
+  }
+
+
+cin.ignore() ---> very important. if you use getline after cin than it would be used.
+
+
+
+
+reverse(p.begin(), p.end()); ---> reverses a vector.

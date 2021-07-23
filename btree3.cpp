@@ -15,7 +15,15 @@ class pr{
     pr(node* add):state(1),addr(add){}
     
 };
-void maketree( vector<int>arr, int n){
+void display(node* root){
+  if(root == nullptr) return;
+  if(root->left != nullptr and root->right != nullptr) cout<<root->data<<"-->"<<root->left->data<<", "<<root->right->data<<".\n";
+  else if(root->left != nullptr) cout<<root->data<<"-->"<<root->left->data<<".\n";
+  else if(root->right != nullptr)cout<<root->data<<"-->"<<root->right->data<<".\n";
+  else cout<<root->data<<"-->"<<".\n";
+  display(root->left); display(root->right);
+}
+void maketree(int arr[], int n){
   stack<pr*>st; node* root = new node(arr[0]); pr *rootp = new pr(root);
    st.push(rootp); int i=1;
   while(st.empty() != true and i<n){
@@ -39,20 +47,18 @@ void maketree( vector<int>arr, int n){
         
     }
     i++;
-  }     
-    
+  }
+  display(root);
 }
 int main(){
   int n;
-  cin>>n; vector<int>arr;
-  string s; cin.ignore();
-  getline(cin,s);
-  stringstream ss(s); string token;
-  while(getline(ss,token,' ')){
-    if(token[0] != 'n') arr.push_back(stoi(token));
-    else arr.push_back(-1);
+  cin>>n;
+  int arr[n]; 
+  for(int i=0; i<(2*n-1); i++){
+    if(i%2 == 0) {
+      cin>>arr[i/2];
+    }
   }
-
   maketree(arr,n);
   return 0;
 }

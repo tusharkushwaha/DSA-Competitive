@@ -15,6 +15,18 @@ class pr{
     pr(node* add):state(1),addr(add){}
     
 };
+void printallpath(node* root, int lo, int hi, int sum, vector<int>v, vector<vector<int>> &res){
+    if(root == nullptr) return;
+      if(lo<=sum+root->data and hi>=sum + root->data){
+        v.push_back(root->data);
+        res.push_back(v);
+        }
+      else v.push_back(root->data);
+    printallpath(root->left, lo, hi, sum+root->data,v, res );
+    printallpath(root->right, lo, hi, sum+root->data, v, res);
+    
+    
+}
 void maketree( vector<int>arr, int n){
   stack<pr*>st; node* root = new node(arr[0]); pr *rootp = new pr(root);
    st.push(rootp); int i=1;
@@ -39,8 +51,13 @@ void maketree( vector<int>arr, int n){
         
     }
     i++;
-  }     
-    
+  } 
+  int hi, lo;
+  cin>>lo>>hi; 
+  vector<int>v;
+  vector<vector<int>> res;
+  printallpath(root, lo, hi, 0,v, res);
+  debug(res)
 }
 int main(){
   int n;

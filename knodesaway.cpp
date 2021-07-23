@@ -1,9 +1,6 @@
 #include <bits/stdc++.h>
 using namespace std;
-#define debug(a) cout<<#a<<' ';_print(a); cout<<endl;
-template <class T> void _print(T a) {cout<<a;}
-template <class T> void _print(vector<T>a) {cout<<'['; for(auto &i: a) cout<<i<<' '; cout<<']'; }
-template<class T> void _print(vector<vector<T>>a){cout<<'[';for(auto &i:a){cout<<'{';for(auto &j:i)cout<<j<<',';cout<<'}'<<endl;}cout<<']';}
+#define debug(a) cout<<#a<<' ';_print(a); cout<<endl;template <class T> void _print(T a) {cout<<a;};template <class T> void _print(vector<T>a) {cout<<'['; for(auto &i: a) cout<<i<<' '; cout<<']'; };template<class T> void _print(vector<vector<T>>a){cout<<'[';for(auto &i:a){cout<<'{';for(auto &j:i)cout<<j<<',';cout<<'}'<<endl;}cout<<']';};
 
 class node{
   public: int data; node* left; node *right;
@@ -15,6 +12,25 @@ class pr{
     pr(node* add):state(1),addr(add){}
     
 };
+void printnodes(node* root, int k, int bachav){
+  if(root == nullptr or k<0 or root->data == bachav) return;
+  if(k==0) cout<<root->data<<" ";
+  printnodes(root->left, k-1, bachav);
+  printnodes(root->right, k-1, bachav);
+}
+vector<int> ppath(node* root, int data, vector<int>v){
+    // vector<node*>v;
+    if(root == nullptr) return v;
+    if(root->data == data) {
+        v.push_back(data);
+        return v;
+    }
+    v.push_back(root->data);
+    auto p = ppath(root->left, data,v);
+    if(p.back() == data) return p;
+    auto p1 =  ppath(root->right, data, v);
+    if(p.back() == data ) return p1;
+}
 void maketree( vector<int>arr, int n){
   stack<pr*>st; node* root = new node(arr[0]); pr *rootp = new pr(root);
    st.push(rootp); int i=1;
@@ -40,7 +56,17 @@ void maketree( vector<int>arr, int n){
     }
     i++;
   }     
-    
+  int data; cin>>data;
+  vector<int> v;
+  auto p = ppath(root, data, v);
+  reverse(p.begin(), p.end());
+  // debug(p);
+  int k; cin>>k;
+  int n1 = p.size();
+  for(int i= 0 ; i<n1; i++){
+    printnodes(p[i], k-i ,(i==0 )? -1 : p[i-1]);      
+    if(k-i<0) break;
+  }
 }
 int main(){
   int n;

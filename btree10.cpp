@@ -1,9 +1,8 @@
 #include <bits/stdc++.h>
+#include <bits/stdc++.h>
 using namespace std;
 #define debug(a) cout<<#a<<' ';_print(a); cout<<endl;
-template <class T> void _print(T a) {cout<<a;}
-template <class T> void _print(vector<T>a) {cout<<'['; for(auto &i: a) cout<<i<<' '; cout<<']'; }
-template<class T> void _print(vector<vector<T>>a){cout<<'[';for(auto &i:a){cout<<'{';for(auto &j:i)cout<<j<<',';cout<<'}'<<endl;}cout<<']';}
+template <class T> void _print(T a) {cout<<a;};template <class T> void _print(vector<T>a) {cout<<'['; for(auto &i: a) cout<<i<<' '; cout<<']'; };template<class T> void _print(vector<vector<T>>a){cout<<'[';for(auto &i:a){cout<<'{';for(auto &j:i)cout<<j<<',';cout<<'}'<<endl;}cout<<']';};
 
 class node{
   public: int data; node* left; node *right;
@@ -12,9 +11,28 @@ class node{
 };
 class pr{
   public: node* addr; int state;
-    pr(node* add):state(1),addr(add){}
-    
+    pr(node* add):state(1),addr(add){}    
 };
+void clonel(node *root){
+  if(root == nullptr) return;
+  root->left = root->left->left;
+  clonel(root->left);
+  clonel(root->right);
+}
+void displaytree(node* root){
+  if(root == nullptr) return;
+  if(root->left != nullptr and root->right != nullptr) cout<<root->data<<"-->"<<root->left->data<<", "<<root->right->data<<"\n";
+  else if(root->left != nullptr) cout<<root->data<<"-->"<<root->left->data<<"\n";
+  else if(root->right != nullptr) cout<<root->data<<"-->"<<root->right->data<<"\n";
+  else cout<<root->data<<"\n";
+  displaytree(root->left);
+  displaytree(root->right);
+
+}
+void task(node* root){
+  clonel(root);
+  displaytree(root);
+}
 void maketree( vector<int>arr, int n){
   stack<pr*>st; node* root = new node(arr[0]); pr *rootp = new pr(root);
    st.push(rootp); int i=1;
@@ -39,8 +57,8 @@ void maketree( vector<int>arr, int n){
         
     }
     i++;
-  }     
-    
+  }
+  task(root);
 }
 int main(){
   int n;
@@ -52,7 +70,8 @@ int main(){
     if(token[0] != 'n') arr.push_back(stoi(token));
     else arr.push_back(-1);
   }
-
-  maketree(arr,n);
+  int a =10;
+  debug(a)
+  // maketree(arr,n);
   return 0;
 }

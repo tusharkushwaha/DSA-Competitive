@@ -1,3 +1,4 @@
+// Find And Nodetorootpath In Binary Tree
 #include <bits/stdc++.h>
 using namespace std;
 #define debug(a) cout<<#a<<' ';_print(a); cout<<endl;
@@ -15,6 +16,32 @@ class pr{
     pr(node* add):state(1),addr(add){}
     
 };
+void traversal(node* root){
+    string pre; string in; string post;
+    stack<pr*>st; pr *temp = new pr(root); st.push(temp);
+    // debug(st.top()->addr->data)
+    while(st.empty() != true){
+        if(st.top()->state == 1){
+            pre =pre +" " +to_string(st.top()->addr->data);
+            st.top()->state++;
+            pr* temp = new pr(st.top()->addr->left);
+            if(st.top()->addr->left != nullptr) st.push(temp);
+        }
+        else if(st.top()->state == 2){
+            in = in + " "+ to_string(st.top()->addr->data);
+            st.top()->state++;
+            pr* temp = new pr(st.top()->addr->right);
+            if(st.top()->addr->right != nullptr) st.push(temp);
+        }
+        else{
+            post = post + " " + to_string(st.top()->addr->data);
+            st.pop();
+        }
+    }
+    cout<<pre<<"\n";
+    cout<<in<<"\n";
+    cout<<post<<"\n";
+}
 void maketree( vector<int>arr, int n){
   stack<pr*>st; node* root = new node(arr[0]); pr *rootp = new pr(root);
    st.push(rootp); int i=1;
@@ -39,7 +66,9 @@ void maketree( vector<int>arr, int n){
         
     }
     i++;
-  }     
+  }
+  traversal(root);
+    
     
 }
 int main(){

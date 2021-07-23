@@ -1,3 +1,4 @@
+// Levelorder Traversal Of Binary Tree
 #include <bits/stdc++.h>
 using namespace std;
 #define debug(a) cout<<#a<<' ';_print(a); cout<<endl;
@@ -15,6 +16,36 @@ class pr{
     pr(node* add):state(1),addr(add){}
     
 };
+void traversal(node* root){
+    if(root == nullptr) return;
+    queue<node*> q; q.push(root); q.push(nullptr);
+    while(q.empty() != true){
+        if(q.front()==nullptr){
+            q.pop(); cout<<"\n";
+            if(q.empty() != true) q.push(nullptr);
+        }
+        else{
+            if(q.front()->left != nullptr and q.front()->right != nullptr) {
+                q.push(q.front()->left); q.push(q.front()->right);
+                
+                
+            }
+            else if(q.front()->left != nullptr) {
+                q.push(q.front()->left);
+                // cout<<q.front()<<" ";
+                // q.pop();
+                
+            }
+            else if(q.front()->right != nullptr) {
+                q.push(q.front()->right);
+                // cout<<q.front()<<" ";
+                // q.pop();
+            }
+            cout<<q.front()->data<<" ";
+            q.pop();
+        }
+    }
+}
 void maketree( vector<int>arr, int n){
   stack<pr*>st; node* root = new node(arr[0]); pr *rootp = new pr(root);
    st.push(rootp); int i=1;
@@ -39,7 +70,9 @@ void maketree( vector<int>arr, int n){
         
     }
     i++;
-  }     
+  }
+  traversal(root);
+    
     
 }
 int main(){
